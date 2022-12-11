@@ -69,6 +69,9 @@ namespace dsl
 
         uint16_t WS2812B_Matrix::display_string(const int32_t x, const int32_t y, const std::string &string, const std::string &font, const Color &color)
         {
+            // TODO:
+            // - Get spacing from font
+            // - Make a PixelList and sent that to display_pixel_list
             int16_t pos = x;
             int16_t total = 0;
             for (const auto &character : string)
