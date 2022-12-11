@@ -33,6 +33,14 @@ namespace dsl
             __fonts[name] = font;
         }
 
+        void WS2812B_Matrix::display_pixel_list(dsl::models::PixelList pixel_list, const Color &color)
+        {
+            for (const auto &pixel : pixel_list)
+            {
+                set_pixel(pixel.first, pixel.second, color);
+            }
+        }
+
         uint16_t WS2812B_Matrix::display_character(int32_t x, int32_t y, char character, std::string font, const Color &color)
         {
             dsl::models::MatrixFont &font_object = __fonts[font];
@@ -40,12 +48,34 @@ namespace dsl
             if (character == ' ')
                 return font_object.get_space_width();
 
-            dsl::models::MatrixFontCharacter& character_face = font_object.get_character_face(character);
-            for (const auto &pixel : character_face.get_pixels())
+            // Copy the pixellist for the character to a PixelList object
+            dsl::models::MatrixFontCharacter &character_face = font_object.get_character_face(character);
+            dsl::models::PixelList pixels;
+            std::copy(
+                std::begin(character_face.get_pixels()),
+                std::end(character_face.get_pixels()),
+                std::back_insert_iterator(pixels));
+
+            // Add the position
+            for (auto &pixel : pixels)
             {
-                set_pixel(x + pixel.first, y + pixel.second, color);
+                pixel.first += x;
+                pixel.second += y;
             }
+
+            display_pixel_list(pixels, color);
             return character_face.get_width();
+        }
+
+        uint16_t WS2812B_Matrix::display_string(const int32_t x, const int32_t y, const std::string &string, const std::string &font, const Color &color)
+        {
+            int16_t pos = x;
+            int16_t total = 0;
+            for (const auto &character : string)
+            {
+                total += display_character(pos + total, 0, character, font, color) + 1;
+            }
+            return total;
         }
     };
 };

@@ -1,3 +1,4 @@
+#include <iterator>
 #include "models/matrix.h"
 #include "arduino_components/ws2812b.h"
 
@@ -17,7 +18,9 @@ namespace dsl
             int32_t get_led_index(int32_t x, int32_t y);
             void set_pixel(uint16_t x, uint16_t y, Color color, bool show = false);
             void set_font(const std::string &name, dsl::models::MatrixFont &font);
+            void display_pixel_list(dsl::models::PixelList pixel_list, const Color &color);
             uint16_t display_character(int32_t x, int32_t y, char character, std::string font, const Color &color);
+            uint16_t display_string(const int32_t x, const int32_t y, const std::string &string, const std::string &font, const Color &color);
         };
     };
 };

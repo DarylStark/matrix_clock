@@ -150,30 +150,16 @@ void setup()
     strip.set_brightness(10);
 }
 
-int y = 0;
+int x = 32;
 
 void loop()
 {
-    // y -= 1;
-
-    uint16_t pos = 0;
-    uint16_t spacing = 1;
-
+    x -= 1;
+    int16_t pos = 0;
     strip.clear();
-    pos += strip.display_character(y + pos, 0, '0', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, ' ', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '2', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '3', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '4', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '5', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '6', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '7', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '8', "daryl", {0, 255, 0}) + spacing;
-    pos += strip.display_character(y + pos, 0, '9', "daryl", {0, 255, 0}) + spacing;
+    pos = strip.display_string(x, 0, "Halllloooooo", "subway_ticker", {255, 0, 0});
     strip.show();
-
-    if (y < -pos)
-        y = 32;
-
-    delay(180);
+    if (x < -pos)
+        x = 32;
+    delay(40);
 }
