@@ -80,5 +80,21 @@ namespace dsl
             }
             return total;
         }
+
+        void WS2812B_Matrix::draw_horizontal_line(const int32_t x, const int32_t y, const uint32_t length, const Color &color)
+        {
+            for (uint32_t i = x; i < x + length; i++)
+            {
+                set_pixel(i, y, color);
+            }
+        }
+
+        void WS2812B_Matrix::draw_vertical_line(const int32_t x, const int32_t y, const uint32_t height, const Color &color)
+        {
+            for (uint32_t i = y; i < y + height; i++)
+            {
+                set_pixel(x, i, color);
+            }
+        }
     };
 };

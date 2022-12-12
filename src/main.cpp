@@ -326,12 +326,35 @@ int x = 32;
 void loop()
 {
     strip.clear();
-    uint16_t total = strip.display_string(x, 0, "Daryl ", "subway_ticker", {0, 0, 255});
-    total += strip.display_string(x + total, 0, "Stark", "subway_ticker", {0, 255, 0});
-    strip.show();
+
+    strip.draw_vertical_line(x + 0, 0, 8, {255, 0, 0});
+    strip.draw_vertical_line(x + 7, 0, 8, {255, 0, 0});
+    strip.draw_horizontal_line(x + 1, 0, 6, {255, 0, 0});
+    strip.draw_horizontal_line(x + 1, 7, 6, {255, 0, 0});
+    strip.draw_horizontal_line(x + 1, 2, 6, {255, 0, 0});
+
+    strip.draw_vertical_line(x + 8, 0, 8, {0, 255, 0});
+    strip.draw_vertical_line(x + 15, 0, 8, {0, 255, 0});
+    strip.draw_horizontal_line(x + 9, 0, 6, {0, 255, 0});
+    strip.draw_horizontal_line(x + 9, 7, 6, {0, 255, 0});
+    strip.draw_horizontal_line(x + 9, 3, 6, {0, 255, 0});
+
+    strip.draw_vertical_line(x + 16, 0, 8, {0, 0, 255});
+    strip.draw_vertical_line(x + 23, 0, 8, {0, 0, 255});
+    strip.draw_horizontal_line(x + 17, 0, 6, {0, 0, 255});
+    strip.draw_horizontal_line(x + 17, 7, 6, {0, 0, 255});
+    strip.draw_horizontal_line(x + 17, 4, 6, {0, 0, 255});
+
+    strip.draw_vertical_line(x + 24, 0, 8, {255, 64, 128});
+    strip.draw_vertical_line(x + 31, 0, 8, {255, 64, 128});
+    strip.draw_horizontal_line(x + 25, 0, 6, {255, 64, 128});
+    strip.draw_horizontal_line(x + 25, 7, 6, {255, 64, 128});
+    strip.draw_horizontal_line(x + 25, 5, 6, {255, 64, 128});
 
     x--;
-    if (x <= -total)
+    if (x == -32)
         x = 32;
+
+    strip.show();
     delay(45);
 }
