@@ -2,7 +2,7 @@
 #include <arduino_components/ws2812b_matrix.h>
 
 dsl::arduino_components::WS2812B_Matrix strip("matrix", 5, 32, 8);
-dsl::models::MatrixFont font_subway_ticker;
+dsl::models::MatrixFont font_subway_ticker(3);
 dsl::models::MatrixFont font_daryl;
 
 void setup()
@@ -318,38 +318,20 @@ void setup()
     strip.set_font("subway_ticker", font_subway_ticker);
     strip.set_font("daryl", font_daryl);
 
-    strip.set_brightness(10);
+    strip.set_brightness(5);
 }
+
+int x = 32;
 
 void loop()
 {
     strip.clear();
-    strip.display_string(0, 0, "ABCDE", "subway_ticker", {0, 255, 0});
+    uint16_t total = strip.display_string(x, 0, "Daryl ", "subway_ticker", {0, 0, 255});
+    total += strip.display_string(x + total, 0, "Stark", "subway_ticker", {0, 255, 0});
     strip.show();
-    delay(1000);
 
-    strip.clear();
-    strip.display_string(0, 0, "FGHIJ", "subway_ticker", {0, 255, 0});
-    strip.show();
-    delay(1000);
-
-    strip.clear();
-    strip.display_string(0, 0, "KLMNO", "subway_ticker", {0, 255, 0});
-    strip.show();
-    delay(1000);
-
-    strip.clear();
-    strip.display_string(0, 0, "PQRST", "subway_ticker", {0, 255, 0});
-    strip.show();
-    delay(1000);
-
-    strip.clear();
-    strip.display_string(0, 0, "UVWXY", "subway_ticker", {0, 255, 0});
-    strip.show();
-    delay(1000);
-
-    strip.clear();
-    strip.display_string(0, 0, "Z", "subway_ticker", {0, 255, 0});
-    strip.show();
-    delay(1000);
+    x--;
+    if (x <= -total)
+        x = 32;
+    delay(45);
 }
