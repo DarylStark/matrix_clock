@@ -21,8 +21,8 @@ namespace dsl
             void display_pixel_list(dsl::models::PixelList pixel_list, const Color &color);
             uint16_t display_character(int32_t x, int32_t y, char character, std::string font, const Color &color);
             uint16_t display_string(const int32_t x, const int32_t y, const std::string &string, const std::string &font, const Color &color);
-            void draw_horizontal_line(const int32_t x, const int32_t y, const uint32_t length, const Color &color);
-            void draw_vertical_line(const int32_t x, const int32_t y, const uint32_t height, const Color &color);
+            void draw_horizontal_line(const int32_t x, const int32_t y, const int32_t length, const Color &color);
+            void draw_vertical_line(const int32_t x, const int32_t y, const int32_t height, const Color &color);
         };
     };
 };
