@@ -11,6 +11,16 @@ void setup()
     strip.setup();
 
     // Font: Daryl
+    font_daryl.set_default(
+        dsl::models::MatrixFontCharacter(
+            {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 0}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}}));
+
+    // Characters
+    font_daryl.set_character(
+        ':',
+        dsl::models::MatrixFontCharacter(
+            {{0, 1}, {0, 3}}));
+
     // Numbers
     font_daryl.set_character(
         '0',
@@ -54,6 +64,10 @@ void setup()
             {{0, 0}, {0, 2}, {0, 3}, {0, 4}, {1, 0}, {1, 2}, {1, 4}, {2, 0}, {2, 1}, {2, 2}, {2, 3}, {2, 4}}));
 
     // Font: Subway Ticker
+    font_subway_ticker.set_default(
+        dsl::models::MatrixFontCharacter(
+            {{0, 0}, {0, 1}, {1, 0}, {1, 1}}));
+
     // Characters
     font_subway_ticker.set_character(
         ':',
@@ -321,39 +335,11 @@ void setup()
     strip.set_brightness(5);
 }
 
-int x = 32;
-
 void loop()
 {
     strip.clear();
 
-    strip.draw_vertical_line(x + 0, 0, 8, {255, 0, 0});
-    strip.draw_vertical_line(x + 7, 0, 8, {255, 0, 0});
-    strip.draw_horizontal_line(x + 1, 0, 6, {255, 0, 0});
-    strip.draw_horizontal_line(x + 1, 7, 6, {255, 0, 0});
-    strip.draw_horizontal_line(x + 1, 2, 6, {255, 0, 0});
-
-    strip.draw_vertical_line(x + 8, 0, 8, {0, 255, 0});
-    strip.draw_vertical_line(x + 15, 0, 8, {0, 255, 0});
-    strip.draw_horizontal_line(x + 9, 0, 6, {0, 255, 0});
-    strip.draw_horizontal_line(x + 9, 7, 6, {0, 255, 0});
-    strip.draw_horizontal_line(x + 9, 3, 6, {0, 255, 0});
-
-    strip.draw_vertical_line(x + 16, 0, 8, {0, 0, 255});
-    strip.draw_vertical_line(x + 23, 0, 8, {0, 0, 255});
-    strip.draw_horizontal_line(x + 17, 0, 6, {0, 0, 255});
-    strip.draw_horizontal_line(x + 17, 7, 6, {0, 0, 255});
-    strip.draw_horizontal_line(x + 17, 4, 6, {0, 0, 255});
-
-    strip.draw_vertical_line(x + 24, 0, 8, {255, 64, 128});
-    strip.draw_vertical_line(x + 31, 0, 8, {255, 64, 128});
-    strip.draw_horizontal_line(x + 25, 0, 6, {255, 64, 128});
-    strip.draw_horizontal_line(x + 25, 7, 6, {255, 64, 128});
-    strip.draw_horizontal_line(x + 25, 5, 6, {255, 64, 128});
-
-    x--;
-    if (x == -32)
-        x = 32;
+    strip.display_string(1, 0, "Dar,", "subway_ticker", {0, 255, 0});
 
     strip.show();
     delay(45);

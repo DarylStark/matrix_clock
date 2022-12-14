@@ -76,7 +76,7 @@ namespace dsl
             int16_t total = 0;
             for (const auto &character : string)
             {
-                total += display_character(pos + total, 0, character, font, color) + 1;
+                total += display_character(pos + total, y, character, font, color) + 1;
             }
             return total;
         }

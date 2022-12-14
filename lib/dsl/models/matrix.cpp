@@ -29,7 +29,7 @@ namespace dsl
         }
 
         MatrixFont::MatrixFont(uint16_t space_width /* = 1 */)
-            : __space_width(space_width)
+            : __space_width(space_width), __default()
         {
         }
 
@@ -38,9 +38,22 @@ namespace dsl
             __characters[character] = face;
         }
 
+        void MatrixFont::set_default(const MatrixFontCharacter &face)
+        {
+            __default = face;
+        }
+
         MatrixFontCharacter &MatrixFont::get_character_face(const char character)
         {
-            return __characters.at(character);
+            try
+            {
+                auto &c = __characters.at(character);
+                return c;
+            }
+            catch (std::out_of_range)
+            {
+                return __default;
+            }
         }
 
         uint16_t MatrixFont::get_space_width() const
