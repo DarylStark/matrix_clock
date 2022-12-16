@@ -337,10 +337,5 @@ void setup()
 
 void loop()
 {
-    strip.clear();
-    strip.draw_rectangle(0, 5, 32, 2, {255, 0, 0}, {255, 0, 0});
-    strip.draw_rectangle(0, 3, 32, 2, {255, 255, 255}, {255, 255, 255});
-    strip.draw_rectangle(0, 1, 32, 2, {0, 0, 255}, {0, 0, 255});
-    strip.show();
     delay(45);
 }
