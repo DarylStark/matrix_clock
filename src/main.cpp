@@ -339,7 +339,16 @@ void loop()
 {
     strip.clear();
 
-    strip.display_string(1, 0, "Dar,", "subway_ticker", {0, 255, 0});
+    // Time
+    strip.display_string(2, 2, "20:19", "daryl", {255, 255, 255});
+
+    // Display for the current day
+    strip.draw_horizontal_line(6, 0, 3, {0xa0, 0x020, 0xf0});
+
+    // Temperature
+    for (uint y = 0; y < 8; y++)
+        strip.draw_horizontal_line(21, y, 11, {0, 0, 64});
+    strip.display_string(23, 2, "17", "daryl", {255, 255, 255});
 
     strip.show();
     delay(45);
