@@ -41,7 +41,7 @@ namespace dsl
             }
         }
 
-        uint16_t WS2812B_Matrix::display_character(int32_t x, int32_t y, char character, std::string font, const Color &color)
+        uint16_t WS2812B_Matrix::display_character(const int32_t x, const int32_t y, const char character, const std::string &font, const Color &color)
         {
             dsl::models::MatrixFont &font_object = __fonts[font];
 

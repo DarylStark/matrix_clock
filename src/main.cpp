@@ -332,10 +332,17 @@ void setup()
     strip.set_font("subway_ticker", font_subway_ticker);
     strip.set_font("daryl", font_daryl);
 
-    strip.set_brightness(5);
+    strip.set_brightness(255);
 }
+
+int x = 32;
 
 void loop()
 {
-    delay(45);
+    // delay(45);
+    strip.clear();
+    uint16_t length = strip.display_string(x--, 0, "Dit is een hele lange tekst om even iets te proberen op het Matrix bordje dat ik gemaakt heb. En nog meer tekst maakt hem nog langzamer! Veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeel langzamer zelfs. Iedere keer duurt het langer voordat hij naar het volgende frame gaat", "subway_ticker", {255, 0, 0});
+    if (x < -length)
+        x = 32;
+    strip.show();
 }
