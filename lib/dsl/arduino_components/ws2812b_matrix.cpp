@@ -98,5 +98,23 @@ namespace dsl
                     set_pixel(x, i, color);
             }
         }
+
+        void WS2812B_Matrix::draw_rectangle(const int32_t x, const int32_t y, const uint16_t width, const uint16_t height, const Color &border, const Color &fillcolor)
+        {
+            // Draw the border
+            draw_horizontal_line(x, y, width, border);
+            draw_horizontal_line(x, (y + height) - 1, width, border);
+            draw_vertical_line(x, y + 1, height - 2, border);
+            draw_vertical_line((x + width) - 1, y + 1, height - 2, border);
+
+            // Fill the border (if set)
+            uint32_t fc = fillcolor;
+            if (fc > 0)
+            {
+                for (int16_t filly = y + 1; filly <= (y + height) - 2; ++filly)
+                    draw_horizontal_line(x + 1, filly, width - 2, fillcolor);
+            }
+        }
+
     };
 };

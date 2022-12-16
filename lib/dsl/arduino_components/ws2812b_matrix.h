@@ -23,6 +23,7 @@ namespace dsl
             uint16_t display_string(const int32_t x, const int32_t y, const std::string &string, const std::string &font, const Color &color);
             void draw_horizontal_line(const int32_t x, const int32_t y, const int32_t length, const Color &color);
             void draw_vertical_line(const int32_t x, const int32_t y, const int32_t height, const Color &color);
+            void draw_rectangle(const int32_t x, const int32_t y, const uint16_t width, const uint16_t height, const Color &border, const Color& fillcolor);
         };
     };
 };

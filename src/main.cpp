@@ -338,18 +338,9 @@ void setup()
 void loop()
 {
     strip.clear();
-
-    // Time
-    strip.display_string(2, 2, "20:19", "daryl", {255, 255, 255});
-
-    // Display for the current day
-    strip.draw_horizontal_line(6, 0, 3, {0xa0, 0x020, 0xf0});
-
-    // Temperature
-    for (uint y = 0; y < 8; y++)
-        strip.draw_horizontal_line(21, y, 11, {0, 0, 64});
-    strip.display_string(23, 2, "17", "daryl", {255, 255, 255});
-
+    strip.draw_rectangle(0, 5, 32, 2, {255, 0, 0}, {255, 0, 0});
+    strip.draw_rectangle(0, 3, 32, 2, {255, 255, 255}, {255, 255, 255});
+    strip.draw_rectangle(0, 1, 32, 2, {0, 0, 255}, {0, 0, 255});
     strip.show();
     delay(45);
 }
