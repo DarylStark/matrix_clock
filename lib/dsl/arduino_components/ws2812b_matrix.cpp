@@ -10,10 +10,10 @@ namespace dsl
         {
         }
 
-        void WS2812B_Matrix::set_pixel(uint16_t x, uint16_t y, Color color, bool show /* = false */)
+        void WS2812B_Matrix::set_pixel(uint16_t x, uint16_t y, Color color)
         {
             int32_t index = get_led_index(x, y);
-            WS2812B::set_pixel(index, color, show);
+            WS2812B::set_pixel(index, color);
         }
 
         int32_t WS2812B_Matrix::get_led_index(int32_t x, int32_t y)

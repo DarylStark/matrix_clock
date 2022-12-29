@@ -16,8 +16,8 @@ namespace dsl
         }
 
         // Public methods for LiquidCrystal
-        WS2812B::WS2812B(const std::string &name, uint8_t gpio, uint16_t length)
-            : Component(name), __gpio(gpio), __length(length)
+        WS2812B::WS2812B(const std::string &name, uint8_t gpio, uint16_t length, bool autoshow /* = false */)
+            : Component(name), __gpio(gpio), __length(length), __autoshow(autoshow)
         {
         }
 
@@ -37,17 +37,17 @@ namespace dsl
         {
         }
 
-        void WS2812B::fill(const Color color, bool show /* = false */)
+        void WS2812B::fill(const Color color)
         {
             __component.fill(color);
-            if (show)
+            if (__autoshow)
                 this->show();
         }
 
-        void WS2812B::clear(bool show /* = false */)
+        void WS2812B::clear()
         {
             __component.clear();
-            if (show)
+            if (__autoshow)
                 this->show();
         }
 
@@ -56,13 +56,13 @@ namespace dsl
             __component.show();
         }
 
-        void WS2812B::set_pixel(uint16_t led, Color color, bool show /* = false */)
+        void WS2812B::set_pixel(uint16_t led, Color color)
         {
             if (led >= __length)
                 return;
             uint32_t color_code = static_cast<uint32_t>(color);
             __component.setPixelColor(led, color_code);
-            if (show)
+            if (__autoshow)
                 this->show();
         }
 

@@ -19,7 +19,7 @@ namespace dsl
 
             // Pixel manipulation
             int32_t get_led_index(int32_t x, int32_t y);
-            void set_pixel(uint16_t x, uint16_t y, Color color, bool show = false);
+            void set_pixel(uint16_t x, uint16_t y, Color color);
             void display_pixel_list(dsl::models::PixelList pixel_list, const Color &color);
 
             // Font management

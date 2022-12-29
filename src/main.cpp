@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <arduino_components/ws2812b_matrix.h>
 
+#include <utilities/utilities.h>
+
 dsl::arduino_components::WS2812B_Matrix strip("matrix", 5, 32, 8);
 dsl::models::MatrixFont font_subway_ticker(3);
 dsl::models::MatrixFont font_daryl;
@@ -332,9 +334,27 @@ void setup()
     strip.set_font("subway_ticker", font_subway_ticker);
     strip.set_font("daryl", font_daryl);
 
-    strip.set_brightness(255);
+    strip.set_brightness(5);
+}
+
+void show_time(dsl::utilities::timediff td)
+{
+    Serial.print("Time: ");
+    Serial.println(td.count());
 }
 
 void loop()
 {
+    int x = 32;
+    int l = 0;
+    while (x > -l)
+    {
+        strip.clear();
+        {
+            dsl::utilities::ScopedTimer st(show_time);
+            l = strip.display_string(x--, 0, "Dit is een hele lange tekst om een punt duidelijk te maken. Hoe langer ik de tekst maak, hoe langzamer hij gaat. Dit komt door het vele werk dat hij moet doen. Dat moeten we dus korter maken. Of in elk geval sneller. We gaan het eens proberen. Eerst even een hele lange tekst tikken. Daarna moeten we de API nog beter maken, trouwens. Ik denk dat de vertraging vooral komt door de hoeveelheid loops die hij moet maken. Dus die moeten we inkorten. Hij is nu echt heeeeeeel langzaam. Maar dan ook echt heel langzaam. Veel te langzaam. Superlangzaam. Deze zin duurt nu 0.26s om te displayen", "subway_ticker", {255, 0xc0, 0});
+        }
+        strip.show();
+        // delay(20);
+    }
 }

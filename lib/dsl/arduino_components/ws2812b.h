@@ -27,18 +27,22 @@ namespace dsl
             uint8_t __gpio;
             uint16_t __length;
             Adafruit_NeoPixel __component;
+            bool __autoshow;
 
         public:
-            WS2812B(const std::string &name, uint8_t gpio, uint16_t length);
+            // Constructors
+            WS2812B(const std::string &name, uint8_t gpio, uint16_t length, bool autoshow = false);
             ~WS2812B();
+
+            // Mandatory metohds for `Component`
             void setup() override;
             void loop() override;
 
             // LED strip methods
-            void fill(const Color color, bool show = false);
-            void clear(bool show = false);
+            void fill(const Color color);
+            void clear();
             void show();
-            void set_pixel(uint16_t led, Color color, bool show = false);
+            void set_pixel(uint16_t led, Color color);
             void set_brightness(uint8_t level);
         };
     }
