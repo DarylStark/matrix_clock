@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <arduino_components/ws2812b_matrix.h>
-#include <dsl_utilities/utilities.h>
+#include <dsl_ut/utilities.h>
 
 dsl::arduino_components::WS2812B_Matrix strip("matrix", 5, 32, 8);
 dsl::models::MatrixFont font_subway_ticker(3);
